@@ -1,0 +1,26 @@
+[
+    {
+        "Nome": "NOTEBOOK",
+        "Estoque": 10,
+        "Capacidade": 15,
+        "MovAceitas": 0,
+        "MovRecusadas": 0,
+        "Ocupado": 66.66666666666666
+    },
+    {
+        "Nome": "SOFÁ",
+        "Estoque": 3,
+        "Capacidade": 12,
+        "MovAceitas": 0,
+        "MovRecusadas": 0,
+        "Ocupado": 25.0
+    },
+    {
+        "Nome": "TV",
+        "Estoque": 8,
+        "Capacidade": 20,
+        "MovAceitas": 1,
+        "MovRecusadas": 0,
+        "Ocupado": 40.0
+    }
+]
