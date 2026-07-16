@@ -8,6 +8,7 @@ def cadastrar(produtos):
         capacidade_produto = int(input("Qual é o espaço reservado no estoque para armazenar o produto: "))
         validacao.verificaçao(estoque_produto, capacidade_produto)
         produto = {"Nome": nome_produto, "Estoque": estoque_produto, "Capacidade": capacidade_produto, "MovAceitas": 0, "MovRecusadas": 0, "Ocupado": 0}
+        produto['Ocupado'] =  (produto["Estoque"] / produto["Capacidade"]) * 100
         produtos.append(produto)
         arquivo.salvar(produtos)
         controle = input("Deseja cadastrar mais produtos, S ou N: ").upper().strip()
@@ -15,6 +16,7 @@ def cadastrar(produtos):
             continue
         else:
             print("Saindo do cadastro")
+            break
        
 
 
@@ -29,12 +31,13 @@ def delete(produtos):
      while True:
         indice = int(input("Qual produto deseja excluir: 0 para cancelar. ")) 
         if (indice-1) < len(produtos) and (indice-1) >= 0:
-            if indice != 0:
+            if indice > 0:
                 indice -= 1
                 produtos.pop(indice)
-            else:
-                print("Operação cancelada com sucesso")
-                break
+                arquivo.salvar(produtos)
+        elif indice == 0:
+            print("Operação cancelada com sucesso")
+            break
         else:
             print("Indice não encontrado, tente novamente")
 
@@ -70,9 +73,8 @@ def atualizar(produtos):
 
 def movimentar(produtos):
     while True:
-        controle_estoque = int(input("Qual operação deseja executar: "))
-        indice = int(input("Qual o índice do produto que deseja alterar: "))
-        indice -= 1
+        listar(produtos)
+        controle_estoque = int(input("Qual operação deseja executar, 0 para encerrar: "))
         if controle_estoque == 0:
             arquivo.salvar(produtos)
             for produto in produtos:
@@ -80,6 +82,7 @@ def movimentar(produtos):
             print("Programa encerrado")
             break
         else:
+            indice = int(input("Qual o índice do produto que deseja alterar: "))
             if controle_estoque > 0:
                 if produtos[indice]["Estoque"] + controle_estoque > produtos[indice]["Capacidade"]:
                     produtos[indice]["MovRecusadas"] += 1

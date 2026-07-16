@@ -7,4 +7,5 @@ def menu_atualizar():
     return input('Opção: ')
 
 def menu_principal():
-    print("SISTEMA DO ESTOQUE\n 1 - Cadastrar produto\n 2 - Listar produtos\n 3 - Atualizar produto\n 4 - Excluir produto\n 5 - Excluir produto\n 6 - Sair")
+    print("SISTEMA DO ESTOQUE\n 1 - Cadastrar produto\n 2 - Listar produtos\n 3 - Atualizar produto\n 4 - Excluir produto\n 5 - Movimentar estoque\n 6 - Sair")
+    return input("Opção: ")
