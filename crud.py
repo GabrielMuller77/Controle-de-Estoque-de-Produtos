@@ -1,21 +1,21 @@
-import sistema
+import validacao
 import arquivo
 import menus
 def cadastrar(produtos):
      while True:
-        controle = input("Deseja cadatrar um produto: [S/N] ").upper().strip()
+        nome_produto = input("Nome do Produto: ").upper()
+        estoque_produto = int(input("Estoque atual do produto: "))
+        capacidade_produto = int(input("Qual é o espaço reservado no estoque para armazenar o produto: "))
+        validacao.verificaçao(estoque_produto, capacidade_produto)
+        produto = {"Nome": nome_produto, "Estoque": estoque_produto, "Capacidade": capacidade_produto, "MovAceitas": 0, "MovRecusadas": 0, "Ocupado": 0}
+        produtos.append(produto)
+        arquivo.salvar(produtos)
+        controle = input("Deseja cadastrar mais produtos, S ou N: ").upper().strip()
         if controle == 'S':
-            nome_produto = input("Nome do Produto: ").upper()
-            estoque_produto = int(input("Estoque atual do produto: "))
-            capacidade_produto = int(input("Qual é o espaço reservado no estoque para armazenar o produto: "))
-            sistema.verificaçao(estoque_produto, capacidade_produto)
-            produto = {"Nome": nome_produto, "Estoque": estoque_produto, "Capacidade": capacidade_produto, "MovAceitas": 0, "MovRecusadas": 0, "Ocupado": 0}
-            produtos.append(produto)
-            arquivo.salvar(produtos)
-        elif controle == 'N':
-            print("Iniciando o sistema de estoque.")
-            break
-     sistema.estoque(produtos)   
+            continue
+        else:
+            print("Saindo do cadastro")
+       
 
 
 def listar(produtos):
@@ -67,3 +67,30 @@ def atualizar(produtos):
                 print("Saindo...")
                 break
                 
+
+def movimentar(produtos):
+    controle_estoque = int(input("Qual operação deseja executar: "))
+    indice = int(input("Qual o índice do produto que deseja alterar: "))
+    indice -= 1
+    if controle_estoque > 0:
+        if produtos[indice]["Estoque"] + controle_estoque > produtos[indice]["Capacidade"]:
+            produtos[indice]["MovRecusadas"] += 1
+            print("O estoque não possui armazenamento necessário para adicionar os itens.")
+            arquivo.salvar(produtos)
+        else:
+            produtos[indice]["MovAceitas"] += 1
+            produtos[indice]["Estoque"] += controle_estoque
+            print(f"{controle_estoque} itens adicionados com sucesso ao estoque, estoque atual do produto: {produtos[indice]["Estoque"]}")
+            arquivo.salvar(produtos)
+    else:
+        if controle_estoque < 0:
+            if abs(controle_estoque) > produtos[indice]["Estoque"]:
+                produtos[indice]["MovRecusadas"] += 1
+                print("Não há estoque suficiente para efetuar a ação.")
+                arquivo.salvar(produtos)
+            else:
+                produtos[indice]["MovAceitas"] += 1 
+                produtos[indice]["Estoque"] += controle_estoque
+                print(f"{controle_estoque} itens retirados com sucesso ao estoque, estoque atual do produto: {produtos[indice]["Estoque"]}")
+                arquivo.salvar(produtos)
+        
