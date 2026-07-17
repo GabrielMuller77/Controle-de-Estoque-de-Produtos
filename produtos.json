@@ -1,13 +1,5 @@
 [
     {
-        "Nome": "NOTEBOOK",
-        "Estoque": 10,
-        "Capacidade": 15,
-        "MovAceitas": 0,
-        "MovRecusadas": 0,
-        "Ocupado": 66.66666666666666
-    },
-    {
         "Nome": "SOFÁ",
         "Estoque": 3,
         "Capacidade": 12,
@@ -26,9 +18,17 @@
     {
         "Nome": "GELADEIRA",
         "Estoque": 11,
-        "Capacidade": 12,
+        "Capacidade": 15,
         "MovAceitas": 1,
         "MovRecusadas": 1,
-        "Ocupado": 91.66666666666666
+        "Ocupado": 0.007333333333333333
+    },
+    {
+        "Nome": "MOUSE",
+        "Estoque": 27,
+        "Capacidade": 40,
+        "MovAceitas": 1,
+        "MovRecusadas": 0,
+        "Ocupado": 0.006750000000000001
     }
 ]

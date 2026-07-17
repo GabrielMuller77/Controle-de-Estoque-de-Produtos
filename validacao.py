@@ -1,15 +1,14 @@
-def verificaçao(estoque_produto, capacidade_produto):
-    if estoque_produto < 0:
-        print("Não é possível informar um estoque negativo")
-        return False
-    elif estoque_produto > capacidade_produto:
-        print("Estoque acima da capacidade máxima.")
-        return False
-    elif capacidade_produto <= 0:
+def verificacao(estoque_produto, capacidade_produto):
+    if capacidade_produto <= 0:
         print("Não existe capacidade nula ou negativa em um estoque.")
         return False
-    else:
-       return True
+    if estoque_produto < 0:
+        print("Não é possível informar um estoque negativo.")
+        return False
+    if estoque_produto > capacidade_produto:
+        print("Estoque acima da capacidade máxima.")
+        return False
+    return True
     
 
 def validar_indice(indice,  produtos):
@@ -18,3 +17,13 @@ def validar_indice(indice,  produtos):
         return indice
     else:
         return None
+    
+
+def validar_int(mensagem):
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print("Valor inválido, tente novamente")
+            
+    
