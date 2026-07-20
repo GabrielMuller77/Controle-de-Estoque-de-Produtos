@@ -96,11 +96,6 @@ def movimentar(produtos):
                 produto["MovRecusadas"] += 1
                 print("O estoque não possui armazenamento necessário para adicionar os itens.")
             else:
-<<<<<<< Updated upstream
-                print('Índice inválido, tente novamente')
-                continue
-                    
-=======
                 produto["MovAceitas"] += 1
                 produto["Estoque"] += controle_estoque
                 funcoes.atualizar_ocupacao(produto)
@@ -116,4 +111,3 @@ def movimentar(produtos):
                 print(f"{abs(controle_estoque)} itens retirados com sucesso ao estoque, estoque atual do produto: {produto["Estoque"]}")
         arquivo.salvar(produtos)
             
->>>>>>> Stashed changes
